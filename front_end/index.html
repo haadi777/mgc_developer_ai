@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="AI Assistant chatbot">
+  <meta name="color-scheme" content="light">
+  <title>AI Assistant</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231f2933'/%3E%3Cpath d='M8 11.2c0-1.2 1-2.2 2.2-2.2h11.6c1.2 0 2.2 1 2.2 2.2v6.2c0 1.2-1 2.2-2.2 2.2H17l-3.2 2.6c-.5.4-1.3 0-1.3-.7v-1.9h-2.3c-1.2 0-2.2-1-2.2-2.2v-6.2z' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <div class="chat-panel">
+    <header class="header">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="18" height="18">
+            <path fill="currentColor" d="M5 6.8A2.8 2.8 0 0 1 7.8 4h8.4A2.8 2.8 0 0 1 19 6.8v6.1a2.8 2.8 0 0 1-2.8 2.8H13l-2.8 2.4a.8.8 0 0 1-1.3-.6v-1.8H7.8A2.8 2.8 0 0 1 5 12.9V6.8Z"/>
+          </svg>
+        </div>
+        <div class="brand-copy">
+          <h1 class="brand-name">AI Assistant</h1>
+          <p class="status"><span class="status-dot" aria-hidden="true"></span> Online</p>
+          <p id="threadId" class="thread-id"></p>
+        </div>
+      </div>
+      <button type="button" id="newChatBtn" class="new-chat">+ New Chat</button>
+    </header>
+
+    <main id="chat" class="chat">
+      <section id="welcome" class="welcome">
+        <div class="welcome-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22">
+            <path fill="currentColor" d="M5 6.8A2.8 2.8 0 0 1 7.8 4h8.4A2.8 2.8 0 0 1 19 6.8v6.1a2.8 2.8 0 0 1-2.8 2.8H13l-2.8 2.4a.8.8 0 0 1-1.3-.6v-1.8H7.8A2.8 2.8 0 0 1 5 12.9V6.8Z"/>
+          </svg>
+        </div>
+        <h2>How can I help you?</h2>
+        <p>Ask a question and I'll find the answer for you.</p>
+        <div class="suggestions">
+          <button type="button" class="suggestion" data-question="What's the base price of a 2-bed in Block B?">What's the base price of a 2-bed in Block B?</button>
+          <button type="button" class="suggestion" data-question="What are the available 3-bed apartments?">What are the available 3-bed apartments?</button>
+          <button type="button" class="suggestion" data-question="Tell me about Aurora Heights.">Tell me about Aurora Heights.</button>
+        </div>
+      </section>
+
+      <div id="messages" class="messages" role="log" aria-live="polite" aria-relevant="additions" aria-label="Conversation" hidden></div>
+    </main>
+
+    <form id="composer" class="composer" autocomplete="off">
+      <div class="composer-box">
+        <label class="sr-only" for="messageInput">Ask your question</label>
+        <textarea id="messageInput" rows="1" placeholder="Ask your question..." enterkeyhint="send"></textarea>
+        <button type="submit" id="sendBtn" class="send-btn" aria-label="Send" disabled>
+          <span class="send-label">Send</span>
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+            <path d="M12 19V6M7 11l5-5 5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <p class="composer-hint">Enter to send · Shift + Enter for a new line</p>
+    </form>
+    </div>
+
+    <aside class="lead-panel" aria-labelledby="leadHeading">
+      <div class="lead-intro">
+        <h2 id="leadHeading">Identify the leads</h2>
+        <p>Choose a city and a source to estimate conversion.</p>
+      </div>
+      <form id="leadForm" class="lead-form">
+        <div class="field">
+          <label for="citySelect">City</label>
+          <select id="citySelect">
+            <option value="" selected disabled>Select a city</option>
+            <option value="Islamabad">Islamabad</option>
+            <option value="Rawalpindi">Rawalpindi</option>
+            <option value="Lahore">Lahore</option>
+            <option value="Karachi">Karachi</option>
+            <option value="Peshawar">Peshawar</option>
+            <option value="Faisalabad">Faisalabad</option>
+            <option value="Multan">Multan</option>
+            <option value="Gujranwala">Gujranwala</option>
+            <option value="Abbottabad">Abbottabad</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="sourceSelect">Source</label>
+          <select id="sourceSelect">
+            <option value="" selected disabled>Select a source</option>
+            <option value="facebook">Facebook ads</option>
+            <option value="property portal">Property portal</option>
+            <option value="google search">Google search</option>
+            <option value="instagram">Instagram</option>
+            <option value="referral">Referral</option>
+            <option value="walk-in">Walk-in</option>
+            <option value="whatsapp campaign">WhatsApp campaign</option>
+            <option value="expo stall">Expo stall</option>
+            <option value="billboard">Billboard</option>
+          </select>
+        </div>
+        <button type="submit" id="predictBtn" class="predict-btn" disabled>Predict</button>
+      </form>
+      <p id="leadStatus" class="lead-status" hidden></p>
+      <div id="leadResult" class="lead-result" hidden>
+        <p class="lead-label">Conversion</p>
+        <p id="leadPercent" class="lead-percent"></p>
+        <p id="leadPriority" class="lead-priority"></p>
+      </div>
+    </aside>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

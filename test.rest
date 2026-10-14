@@ -1,0 +1,42 @@
+POST http://127.0.0.1:8000/chat
+Content-Type: application/json
+
+{
+  "thread_id": "ollama-session-1",
+  "message": "do you know anyting about realestate?"
+}
+
+
+
+############
+###########
+
+POST http://127.0.0.1:8000/chat
+Content-Type: application/json
+
+{
+  "thread_id": "ollama-session-11",
+  "message": "Base price of a 2-bed in Block B?"
+}
+
+###########
+
+POST http://127.0.0.1:8000/chat
+Content-Type: application/json
+
+{
+  "thread_id": "ollama-session-10",
+  "message": "discount for a Margalla-facing corner unit? " 
+}
+
+
+###########
+
+
+POST http://127.0.0.1:8000/predict_lead
+Content-Type: application/json
+
+{
+  "source_clean": "facebook",
+  "city_clean": "Islamabad"
+}
