@@ -1,6 +1,9 @@
-# URL 
-https://78b3c3d3-5500.inc1.devtunnels.ms/
+# URL to test the system: NOTE: PLEASE DO LET ME KNOW BEFORE TESTING. I WILL TURN the Server ON because the models are runing on my personal GPU. Thank You.   
+https://78b3c3d3-5500.inc1.devtunnels.ms/front_end/index.html 
 
+
+# REMOTE REPO LINK:
+https://github.com/haadi777/mgc_developer_ai
 # Aurora Heights AI Assistant + Lead Scoring System
 
 This project is a full-stack AI sales assistant and lead prediction application built for Aurora Heights real-estate inquiries.
